@@ -5,49 +5,51 @@ pragma solidity ^0.8.7;
 //imports
 
 //errors
-    error Capitol__AgeError(uint8 age);
-contract Capitol{
+error Capitol__AgeError(uint8 age);
 
-    enum GameStatus{
+/**
+ * @title
+ * @author raiyan.mook27 : Raiyan Mukhtar
+ */
+contract Capitol {
+    enum GameStatus {
         DEAD,
         ALIVE
     }
 
     /*---------Struct--------*/
-    struct Person{
+    struct Person {
         uint8 age;
         string gender;
-        
-       
     }
     /*----------State variables------*/
     Person[] private s_persons;
-    uint256 private  s_startDate;
-    uint256 private  s_endDate;
+    uint256 private s_startDate;
+    uint256 private s_endDate;
 
     /*----------Events-------------*/
     event PersonAdded(Person person);
 
     /*----------modifiers------------*/
-    modifier checkGender(Person[]calldata persons){
-
+    modifier checkGender(Person[] calldata persons) {
         _;
     }
-    modifier checkAge(uint8 age){
-        if(!(age>=12 && age<18)){
+    modifier checkAge(uint8 age) {
+        if (!(age >= 12 && age < 18)) {
             revert Capitol__AgeError(age);
         }
         _;
     }
 
     //constructor
-    constructor(){
-    
-    }
+    constructor() {}
 
     //add Person
-    function addPerson(uint8 _age,string memory _gender)public checkAge(_age){
-        s_persons.push(Person(_age,_gender));
+    function addPerson(uint8 _age, string memory _gender)
+        public
+        checkAge(_age)
+    {
+        s_persons.push(Person(_age, _gender));
         //emit PersonAdded();
     }
 
@@ -56,7 +58,7 @@ contract Capitol{
     //checkWinner - Chainlink Keepers
 
     ///get number of persons
-    function getNumberOfPersons() public view returns(uint256){
+    function getNumberOfPersons() public view returns (uint256) {
         return s_persons.length;
     }
 }
