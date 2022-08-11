@@ -8,10 +8,10 @@ Create a Capitol contract which:
 * adds person by age and gender (hint: use struct for storing the person)
 * chooses one girl and one boy:
   * you are not allowed to choose the two people from the same gender
-  *they should be between 12 and 18 years old
-  *they should be chosen by random function (you can use block.timestamp but it is not safe or oraclize -> learn more about it from oraclize documentation)
+  * they should be between 12 and 18 years old
+  * they should be chosen by random function (Using chainlink VRF (Verfiable Random Function)
 * you can check how many girls and boys are added -> returns a positive number
 * after choosing the pair (boy and girl) set the start date of the hunger games and the end date (the hunger games should last 5 minutes)
 * after the end of the hunger game, check if the boy and girl are alive (use random 0 - dead, 1 - alive, use modifier for checking if the hunger game ended)
-
+Use the chainlink Keepers to get the winner.
 
